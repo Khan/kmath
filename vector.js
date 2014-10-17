@@ -3,6 +3,7 @@
  * A vector is an array of numbers e.g. [0, 3, 4].
  */
 
+var _ = require("underscore");
 var knumber = require("./number.js");
 
 function arraySum(array) {

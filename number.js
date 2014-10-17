@@ -3,6 +3,8 @@
  * A number is a js-number, e.g. 5.12
  */
 
+var _ = require("underscore");
+
 var DEFAULT_TOLERANCE = 1e-9;
 var EPSILON = Math.pow(2, -42);
 

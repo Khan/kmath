@@ -3,6 +3,7 @@
  * A point is an array of two numbers e.g. [0, 0].
  */
 
+var _ = require("underscore");
 var kvector = require("./vector.js");
 var knumber = require("./number.js");
 
