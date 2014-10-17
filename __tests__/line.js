@@ -1,43 +1,37 @@
-(function() {
-    module("kline");
+var assert = require("assert");
+var line = require("../line.js");
 
-    var line = KhanUtil.kline;
+describe("kline", function() {
 
-    asyncTest('two identical lines should be equal', 1, function() {
+    it('two identical lines should be equal', function() {
         var result = line.equal([[1, 1], [3, 3]], [[1, 1], [3, 3]]);
-        strictEqual(result, true);
-        start();
+        assert.strictEqual(result, true);
     });
 
-    asyncTest('two parallel lines should not be equal', 1, function() {
+    it('two parallel lines should not be equal', function() {
         var result = line.equal([[1, 1], [3, 3]], [[1, 2], [3, 4]]);
-        strictEqual(result, false);
-        start();
+        assert.strictEqual(result, false);
     });
 
-    asyncTest('two intersecting lines should not be equal', 1, function() {
+    it('two intersecting lines should not be equal', function() {
         var result = line.equal([[1, 1], [3, 3]], [[1, 1], [3, 4]]);
-        strictEqual(result, false);
-        start();
+        assert.strictEqual(result, false);
     });
 
-    asyncTest('two collinear lines should be equal #1', 1, function() {
+    it('two collinear lines should be equal #1', function() {
         var result = line.equal([[1, 1], [3, 3]], [[0, 0], [5, 5]]);
-        strictEqual(result, true);
-        start();
+        assert.strictEqual(result, true);
     });
 
-    asyncTest('two collinear lines should be equal #2', 1, function() {
+    it('two collinear lines should be equal #2', function() {
         var result = line.equal([[4, 4], [5, 5]], [[0, 0], [1, 1]]);
-        strictEqual(result, true);
-        start();
+        assert.strictEqual(result, true);
     });
 
-    asyncTest('two collinear lines should be equal #3', 1, function() {
+    it('two collinear lines should be equal #3', function() {
         var result = line.equal([[0, 0], [1, 1]], [[3, 3], [6, 6]]);
-        strictEqual(result, true);
-        start();
+        assert.strictEqual(result, true);
     });
 
-})();
+});
 
