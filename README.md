@@ -13,7 +13,7 @@ especially geometric calculations.
 
 For example, some computations are easy to express using vectors, but
 difficult to express in terms of real numbers. kmath lets you write
-vector, point, line, or ray- based math naturally.
+vector-, point-, line-, or ray-based math naturally.
 
 kmath emphasizes simplicity and interoperability in the interfaces
 provided. All kmath interfaces use standard Javascript types, usually
