@@ -77,55 +77,55 @@ Documentation for specific functions for each type is provided below.
 kmath.number
 ------------
 
-**`number.DEFAULT_TOLERANCE`**: `number.DEFAULT_TOLERANCE === 1e-9`
+#### `number.DEFAULT_TOLERANCE === 1e-9`
 
 The default tolerance to kmath functions.
 
-**`number.EPSILON`**: `number.EPSILON === Math.pow(2, -42)`
+#### `number.EPSILON === Math.pow(2, -42)`
 
 A small number. Not machine epsilon, but a reasonable amount of error
 more than generally accrued by doing repeated floating point math.
 
-**`number.is`**: `number.is(maybeANumber)`
+#### `number.is(maybeANumber)`
 
 Returns true if the argument is a javascript number.
 
-**`number.equal`**: `number.equal(number1, number2, [tolerance])`
+#### `number.equal(number1, number2, [tolerance])`
 
 Compares whether number1 and number2 are equal to each other, within
 a difference of tolerance, which defaults to `number.DEFAULT_TOLERANCE`.
 
-**`number.sign`**: `number.sign(aNumber, [tolerance])`
+#### `number.sign(aNumber, [tolerance])`
 
 Returns 0 if the number is equal to 0 within `tolerance`, or -1 if the
 number is less than 0, or 1 if the number is greater than 0.
 
-**`number.isInteger`**: `number.isInteger(aNumber, tolerance)`
+#### `number.isInteger(aNumber, tolerance)`
 
 Returns true if `aNumber` is within `tolerance` difference of an integer.
 `tolerance` defaults to `number.DEFAULT_TOLERANCE`.
 
-**`number.round`**: `number.round(aNumber, precision)`
+#### `number.round(aNumber, precision)`
 
 Rounds `aNumber` to `precision` decimal places.
 
-**`number.roundTo`**: `number.roundTo(aNumber, increment)`
+#### `number.roundTo(aNumber, increment)`
 
 Rounds `aNumber` to the nearest `increment`.
 
 For example, `number.roundTo(1.4, 0.5)` would return `1.5`
 
-**`number.floorTo`**: `number.floorTo(aNumber, increment)`
+#### `number.floorTo(aNumber, increment)`
 
 Returns the nearest multiple of `increment` that is no greater than
 `aNumber`.
 
-**`number.cielTo`**: `number.ciel(aNumber, increment)`
+#### `number.ciel(aNumber, increment)`
 
 Returns the nearest multiple of `increment` that is no smaller than
 `aNumber`.
 
-**`number.toFraction`**: `number.toFraction(decimal, [tolerance], [maxDenominator])`
+#### `number.toFraction(decimal, [tolerance], [maxDenominator])`
 
 Returns an array containing two elements, `[n, d]`, a numerator and
 denominator representing a fraction `n/d` that is within `tolerance`
