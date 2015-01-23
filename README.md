@@ -33,6 +33,7 @@ are at odds. If you are writing code in an inner loop in an allocation-
 sensitive environment, kmath might not be for you. Each method is
 pure and allocates a new array for the return value.
 
+
 Getting started
 ---------------
 
@@ -47,8 +48,9 @@ into a Node repl:
     > kmath.vector.add([1, 2], [3, 4])
     [4, 6]
 
-Overview
---------
+
+Usage overview
+--------------
 
 kmath has 5 basic types:
 
@@ -73,6 +75,7 @@ rotate the point `[1, 1]` by 90 degrees around `[0, 0]`, one might use:
     kmath.point.rotateDeg([1, 1], 90, [0, 0])
 
 Documentation for specific functions for each type is provided below.
+
 
 kmath.number
 ------------
@@ -136,6 +139,177 @@ is found, `[decimal, 1]` is returned.
 
 `tolerance` defaults to `number.EPSILON`. `maxDenominator` defaults to
 `1000`.
+
+
+kmath.vector
+------------
+
+#### `vector.is(maybeAVector, [length])
+
+Returns true if `maybeAVector` is an array of numbers. If length is specified,
+only returns true if `maybeAVector` is a vector of length `length`.
+
+#### `vector.equal(v1, v2, [tolerance])`
+
+Returns true if `v1` and `v2` are equal within `tolerance`. If `tolerance`
+is not specified, `kmath.number.DEFAULT_TOLERANCE` is used. Each dimension
+is compared individually, rather than comparing length and direction.
+
+If `v1` and `v2` have different lengths, this function returns `false`.
+
+    kmath.vector.equal([1, 2], [1, 3])
+    => false
+    kmath.vector.equal([1, 2], [1, 2, 3])
+    => false
+    kmath.vector.equal([1, 2], [1, 2])
+    => true
+
+#### `vector.codirectional(v1, v2, [tolerance])`
+
+Returns true if `v1` and `v2` have the same direction within `tolerance`.
+If `tolerance` is unspecified, `kmath.number.DEFAULT_TOLERANCE` is used.
+Note that tolerance is checked after normalization.
+
+If `v1` and `v2` are different lengths, this function returns `false`,
+regardless of whether they are codirectional in the existing dimensions.
+
+This function defines the zero-vector as trivially codirectional with
+every vector.
+
+    kmath.vector.codirectional([1, 2], [2, 4])
+    => true
+    kmath.vector.codirectinoal([1, 2], [0, 0])
+    => true
+    kmath.vector.codirectional([1, 2], [1, 2, 0])
+    => false
+    kmath.vector.codirectional([1, 2], [-2, -4])
+    => false
+
+#### `vector.colinear(v1, v2, [tolerance])
+
+Returns true if `v1` and `v2` lie along the same line, regardless of
+direction. This is equivalent to either `v1` and `v2` being codirectional,
+or `v1` and `-v2` being codirectional, or whether there is some
+`scaleFactor` such that `vector.equal(vector.scale(v1, scaleFactor), v2)`
+is true.
+
+    kmath.vector.colinear([1, 2], [-2, -4])
+    => true
+
+#### `vector.normalize(v)`
+
+Scales the cartesian vector `v` to be `1` unit long.
+
+#### `vector.length(v)`
+
+Returns the length of the cartesian vector `v`.
+
+#### `vector.dot(v1, v2)`
+
+Returns the dot product of cartesian vectors `v1` and `v2`.
+
+#### `vector.add(*vectors)`
+
+Adds multiple cartesian vectors together.
+
+    kmath.vector.add([1, 2], [3, 4])
+    => [4, 6]
+
+#### `vector.subtract(v1, v2)`
+
+Subtracts the cartesian vector `v2` from the cartesian vector `v1`.
+
+    kmath.vector.subtract([4, 6], [1, 2])
+    => [3, 4]
+
+#### `vector.negate(v)`
+
+Negates the cartesian vector `v`. This has the same effect as scaling
+`v` by `-1` or reversing the direction of `v`.
+
+#### `vector.scale(v, scalar)`
+
+Scales the cartesian vector `v` by `scalar`.
+
+    kmath.vector.scale([1, 2], 2)
+    => [2, 4]
+
+#### `vector.polarRadFromCart(v)`
+
+Returns a polar vector `[length, angle]` from the two-dimensional cartesian
+vector `v`, where `angle` is measured in radians.
+
+    kmath.vector.polarRadFromCart([1, 1])
+    => [1.4142135623730951, 0.7853981633974483]
+
+#### `vector.polarDegFromCart(v)`
+
+Returns a polar vector `[length, angle]` from the two-dimensional cartesian
+vector `v`, where `angle` is measured in degrees.
+
+    kmath.vector.polarDegFromCart([0, 2])
+    => [2, 90]
+
+#### `vector.cartFromPolarRad(polar)` or `vector.cartFromPolarRad(length, angle)`
+
+Returns a two-dimensional cartesian vector from the polar vector input,
+where the input angle is measured in radians.
+
+    kmath.vector.cartFromPolarRad([2, Math.PI])
+    => [-2, 0]  // Note: a very small nonzero number is actually returned here,
+                // due to numerical inaccuracy.
+    kmath.vector.cartFromPolarRad(Math.pow(2, 0.5), Math.PI/4)
+    => [1, 1]
+
+#### `vector.cartFromPolarDeg(polar)` or `vector.cartFromPolarDeg(length, angle)`
+
+Returns a two-dimensional cartesian vector from the polar vector input,
+where the input angle is measured in degrees.
+
+    kmath.vector.cartFromPolarRad([2, 90])
+    => [-2, 0]  // Note: a very small nonzero number is actually returned here,
+                // due to numerical inaccuracy.
+    kmath.vector.cartFromPolarRad(Math.pow(2, 0.5), 45)
+    => [1, 1]
+
+#### `vector.rotateRad(v, angle)`
+
+Returns the rotation of the cartesian vector `v` by `angle` radians.
+
+#### `vector.rotateDeg(v, angle)`
+
+Returns the rotation of the cartesian vector `v` by `angle` radians.
+
+#### `vector.angleRad(v1, v2)`
+
+Returns the angle between the directions of cartesian vectors
+`v1` and `v2` in radians.
+
+#### `vector.angleDeg(v1, v2)`
+
+Returns the angle between the directions of cartesian vectors
+`v1` and `v2` in radians.
+
+#### `vector.projection(v1, v2)`
+
+Returns the projection of `v1` along the direction of `v2`
+
+#### `vector.round(v, precision)`
+
+Rounds each dimension of `v` to `precision` decimal places.
+
+#### `vector.roundTo(v, increment)`
+
+Rounds each dimension of `v` to the nearest `increment`.
+
+#### `vector.floorTo(v, increment)`
+
+Floors each dimension of `v` to the nearest `increment`.
+
+#### `vector.cielTo(v, increment)`
+
+Ciels each dimension of `v` to the nearest `increment`.
+
 
 License
 -------
