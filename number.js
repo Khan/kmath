@@ -33,6 +33,11 @@ var knumber = {
         return knumber.equal(x, 0, tolerance) ? 0 : Math.abs(x) / x;
     },
 
+    isInteger: function(num, tolerance) {
+        return knumber.equal(Math.round(num), num, tolerance);
+    },
+
+
     // Round a number to a certain number of decimal places
     round: function(num, precision) {
         var factor = Math.pow(10, precision);
@@ -51,10 +56,6 @@ var knumber = {
 
     ceilTo: function(num, increment) {
         return Math.ceil(num / increment) * increment;
-    },
-
-    isInteger: function(num, tolerance) {
-        return knumber.equal(Math.round(num), num, tolerance);
     },
 
     /**
