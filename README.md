@@ -144,7 +144,7 @@ is found, `[decimal, 1]` is returned.
 kmath.vector
 ------------
 
-#### `vector.is(maybeAVector, [length])
+#### `vector.is(maybeAVector, [length])`
 
 Returns true if `maybeAVector` is an array of numbers. If length is specified,
 only returns true if `maybeAVector` is a vector of length `length`.
@@ -185,7 +185,7 @@ every vector.
     kmath.vector.codirectional([1, 2], [-2, -4])
     => false
 
-#### `vector.colinear(v1, v2, [tolerance])
+#### `vector.colinear(v1, v2, [tolerance])`
 
 Returns true if `v1` and `v2` lie along the same line, regardless of
 direction. This is equivalent to either `v1` and `v2` being codirectional,
