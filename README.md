@@ -278,7 +278,7 @@ Returns the rotation of the cartesian vector `v` by `angle` radians.
 
 #### `vector.rotateDeg(v, angle)`
 
-Returns the rotation of the cartesian vector `v` by `angle` radians.
+Returns the rotation of the cartesian vector `v` by `angle` degrees.
 
 #### `vector.angleRad(v1, v2)`
 
@@ -309,6 +309,138 @@ Floors each dimension of `v` to the nearest `increment`.
 #### `vector.cielTo(v, increment)`
 
 Ciels each dimension of `v` to the nearest `increment`.
+
+
+kmath.point
+-----------
+
+#### `point.is(maybeAPoint, [length])
+
+Returns true if `maybeAPoint` is an array of numbers. If length is specified,
+only returns true if `maybeAPoint` is a point of dimension `length`.
+
+#### `point.equal(p1, p2, [tolerance])`
+
+Returns true if `p1` and `p2` are equal within `tolerance`. If `tolerance`
+is not specified, `kmath.number.DEFAULT_TOLERANCE` is used. Each dimension
+is compared individually.
+
+If `p1` and `p2` have different lengths, this function returns `false`.
+
+    kmath.point.equal([1, 2], [1, 3])
+    => false
+    kmath.point.equal([1, 2], [1, 2, 3])
+    => false
+    kmath.point.equal([1, 2], [1, 2])
+    => true
+
+#### `point.addVector(p, *vectors)` or `point.addVectors(p, *vectors)`
+
+Returns the point created by adding the cartesian vectors `*vectors`
+to the cartesian point `p`.
+
+#### `point.subtractVector(p, v)`
+
+Returns the point created by subtracting the cartesian vectors `v`
+to the cartesian point `p`.
+
+#### `point.distanceToPoint(p1, p2)`
+
+Returns the distance between `p1` and `p2`.
+
+#### `point.distanceToLine(p, theLine)`
+
+Returns the distance between `p` and the line `theLine`.
+
+For example, to find the distance from the origin to the
+`y = 5` line, one could write:
+
+    kmath.point.distanceToLine([0, 0], [[-1, 5], [1, 5]])
+    => 5
+
+#### `point.reflectOverLine(p, theLine)`
+
+Returns the reflection of `p` over the line `theLine`.
+
+For example, to reflect the origin over the line `y = 5`,
+one could write:
+
+    kmath.point.reflectOverLine([0, 0], [[-1, 5], [1, 5]])
+    => [0, 10]
+
+#### `point.compare(p1, p2, equalityTolerance)`
+
+Compares two points, returning -1, 0, or 1, for use with
+Array.prototype.sort
+
+Note: This technically doesn't satisfy the total-ordering
+requirements of Array.prototype.sort unless equalityTolerance
+is 0. In some cases very close points that compare within a
+few equalityTolerances could appear in the wrong order.
+
+#### `point.polarRadFromCart(p)`
+
+Returns a polar point `[length, angle]` from the two-dimensional cartesian
+point `v`, where `angle` is measured in radians.
+
+    kmath.point.polarRadFromCart([1, 1])
+    => [1.4142135623730951, 0.7853981633974483]
+
+#### `point.polarDegFromCart(p)`
+
+Returns a polar point `[length, angle]` from the two-dimensional cartesian
+point `v`, where `angle` is measured in degrees.
+
+    kmath.point.polarDegFromCart([0, 2])
+    => [2, 90]
+
+#### `point.cartFromPolarRad(polar)` or `point.cartFromPolarRad(length, angle)`
+
+Returns a two-dimensional cartesian point from the polar point input,
+where the input angle is measured in radians.
+
+    kmath.point.cartFromPolarRad([2, Math.PI])
+    => [-2, 0]  // Note: a very small nonzero number is actually returned here,
+                // due to numerical inaccuracy.
+    kmath.point.cartFromPolarRad(Math.pow(2, 0.5), Math.PI/4)
+    => [1, 1]
+
+#### `point.cartFromPolarDeg(polar)` or `point.cartFromPolarDeg(length, angle)`
+
+Returns a two-dimensional cartesian point from the polar point input,
+where the input angle is measured in degrees.
+
+    kmath.point.cartFromPolarRad([2, 90])
+    => [-2, 0]  // Note: a very small nonzero number is actually returned here,
+                // due to numerical inaccuracy.
+    kmath.point.cartFromPolarRad(Math.pow(2, 0.5), 45)
+    => [1, 1]
+
+#### `point.rotateRad(p, angle, center)`
+
+Returns the rotation of the two-dimensional point `v` by `angle` radians
+around the point `center`
+
+#### `point.rotateDeg(p, angle, center)`
+
+Returns the rotation of the two-dimensional point `v` by `angle` degrees
+around the point `center`.
+
+#### `point.round(p, precision)`
+
+Rounds each dimension of `p` to `precision` decimal places.
+
+#### `point.roundTo(p, increment)`
+
+Rounds each dimension of `p` to the nearest `increment`.
+
+#### `point.floorTo(p, increment)`
+
+Floors each dimension of `p` to the nearest `increment`.
+
+#### `point.cielTo(p, increment)`
+
+Ciels each dimension of `p` to the nearest `increment`.
 
 
 License
