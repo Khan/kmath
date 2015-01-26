@@ -368,7 +368,7 @@ one could write:
     kmath.point.reflectOverLine([0, 0], [[-1, 5], [1, 5]])
     => [0, 10]
 
-#### `point.compare(p1, p2, equalityTolerance)`
+#### `point.compare(p1, p2, [equalityTolerance])`
 
 Compares two points, returning -1, 0, or 1, for use with
 Array.prototype.sort
@@ -441,6 +441,41 @@ Floors each dimension of `p` to the nearest `increment`.
 #### `point.cielTo(p, increment)`
 
 Ciels each dimension of `p` to the nearest `increment`.
+
+
+kmath.ray
+---------
+
+#### `ray.equal(r1, r2, [tolerance])`
+
+Returns true if rays `r1` and `r2` are equal within `tolerance`.
+
+If unspecified, `tolerance` defaults to `kmath.number.DEFAULT_TOLERANCE`.
+
+
+kmath.line
+----------
+
+#### `line.equal(line1, line2, [tolerance])`
+
+Returns true if lines `line1` and `line2` are equal within `tolerance`.
+
+If unspecified, `tolerance` defaults to `kmath.number.DEFAULT_TOLERANCE`.
+
+#### `line.midpoint(theLine)`
+
+Returns the midpoint of the line `theLine`.
+
+    kmath.line.midpoint([[0, 5], [5, 0]])
+    => [2.5, 2.5]
+
+#### `line.distanceToPoint(theLine, p)`
+
+Returns the distance between `theLine` and point `p`.
+
+#### `line.reflectPoint(theLine, p)`
+
+Returns the reflection of `p` over `theLine`.
 
 
 License
