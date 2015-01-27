@@ -123,7 +123,7 @@ For example, `number.roundTo(1.4, 0.5)` would return `1.5`
 Returns the nearest multiple of `increment` that is no greater than
 `aNumber`.
 
-#### `number.ciel(aNumber, increment)`
+#### `number.ceilTo(aNumber, increment)`
 
 Returns the nearest multiple of `increment` that is no smaller than
 `aNumber`.
@@ -306,15 +306,15 @@ Rounds each dimension of `v` to the nearest `increment`.
 
 Floors each dimension of `v` to the nearest `increment`.
 
-#### `vector.cielTo(v, increment)`
+#### `vector.ceilTo(v, increment)`
 
-Ciels each dimension of `v` to the nearest `increment`.
+Ceils each dimension of `v` to the nearest `increment`.
 
 
 kmath.point
 -----------
 
-#### `point.is(maybeAPoint, [length])
+#### `point.is(maybeAPoint, [length])`
 
 Returns true if `maybeAPoint` is an array of numbers. If length is specified,
 only returns true if `maybeAPoint` is a point of dimension `length`.
@@ -438,9 +438,9 @@ Rounds each dimension of `p` to the nearest `increment`.
 
 Floors each dimension of `p` to the nearest `increment`.
 
-#### `point.cielTo(p, increment)`
+#### `point.ceilTo(p, increment)`
 
-Ciels each dimension of `p` to the nearest `increment`.
+Ceils each dimension of `p` to the nearest `increment`.
 
 
 kmath.ray
