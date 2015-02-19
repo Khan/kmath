@@ -13,6 +13,22 @@ describe("knumber", function() {
         assert.strictEqual(result, false);
     });
 
+    it('Infinity should equal Infinity', function() {
+        var result = number.equal(
+            Number.POSITIVE_INFINITY,
+            Number.POSITIVE_INFINITY
+        );
+        assert.strictEqual(result, true);
+    });
+
+    it('+Infinity should not equal -Infinity', function() {
+        var result = number.equal(
+            Number.POSITIVE_INFINITY,
+            Number.NEGATIVE_INFINITY
+        );
+        assert.strictEqual(result, false);
+    });
+
     it('sign(0) should be 0', function() {
         assert.strictEqual(number.sign(0), 0);
     });

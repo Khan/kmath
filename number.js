@@ -23,6 +23,10 @@ var knumber = {
         if (x == null || y == null) {
             return x === y;
         }
+        // We check === here so that +/-Infinity comparisons work correctly
+        if (x === y) {
+            return true;
+        }
         if (tolerance == null) {
             tolerance = DEFAULT_TOLERANCE;
         }
