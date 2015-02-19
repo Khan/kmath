@@ -1,6 +1,6 @@
 {
   "name": "kmath",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Khan Academy's Javascript Numeric Math Utilities",
   "main": "index.js",
   "scripts": {
