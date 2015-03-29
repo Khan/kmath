@@ -20,7 +20,7 @@ var kvector = {
         if (!_.isArray(vec)) {
             return false;
         }
-        if (length !== undefined && vec.length !== length) {
+        if (length !== undefined && kvector.length(vec) !== length) {
             return false;
         }
         return _.all(vec, knumber.is);
@@ -209,4 +209,3 @@ var kvector = {
 };
 
 module.exports = kvector;
-
