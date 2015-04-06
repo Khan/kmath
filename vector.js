@@ -16,11 +16,11 @@ function arrayProduct(array) {
 
 var kvector = {
 
-    is: function(vec, length) {
+    is: function(vec, dimension) {
         if (!_.isArray(vec)) {
             return false;
         }
-        if (length !== undefined && vec.length !== length) {
+        if (dimension !== undefined && vec.length !== dimension) {
             return false;
         }
         return _.all(vec, knumber.is);
