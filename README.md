@@ -144,10 +144,10 @@ is found, `[decimal, 1]` is returned.
 kmath.vector
 ------------
 
-#### `vector.is(maybeAVector, [length])`
+#### `vector.is(maybeAVector, [dimension])`
 
-Returns true if `maybeAVector` is an array of numbers. If length is specified,
-only returns true if `maybeAVector` is a vector of length `length`.
+Returns true if `maybeAVector` is an array of numbers. If `dimension` is specified,
+only returns true if `maybeAVector` is a vector with dimension `dimension`.
 
 #### `vector.equal(v1, v2, [tolerance])`
 
