@@ -1,6 +1,6 @@
-.PHONY: all install test
+.PHONY: all install test shorttest build
 
-all: install test
+all: install test build
 
 install:
 	npm install
@@ -24,3 +24,6 @@ test:
 	$(FIND_TESTS) | xargs ./node_modules/.bin/mocha --reporter spec
 shorttest:
 	$(FIND_TESTS) | xargs ./node_modules/.bin/mocha --reporter dot
+
+build:
+	./node_modules/webpack/bin/webpack.js
