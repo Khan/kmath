@@ -2,10 +2,10 @@
   "name": "kmath",
   "version": "0.0.1",
   "description": "Khan Academy's Javascript Numeric Math Utilities",
-  "main": "index.js",
+  "main": "build/kmath.js",
   "scripts": {
-    "test": "make test",
-    "build": "make build"
+    "test": "jest --coverage --watch",
+    "build": "NODE_ENV=production webpack -p"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,15 @@
   },
   "homepage": "https://github.com/Khan/kmath",
   "devDependencies": {
-    "mocha": "^1.21.5",
-    "webpack": "^3.8.1"
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-typescript": "^7.7.7",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
     "underscore": "^1.4.4"

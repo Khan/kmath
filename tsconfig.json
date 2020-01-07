@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/", 
+    "noImplicitAny": true,
+    "module": "esnext",
+    "target": "es6",
+    "allowJs": true
+  }
+}

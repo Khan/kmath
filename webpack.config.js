@@ -1,19 +1,21 @@
-const path = require('path')
+const path = require("path")
 
 module.exports = {
-    entry: './index.js',
-    output: {
-        path: path.join(__dirname, 'build'),
-        filename: 'kmath.js',
-        library: 'kmath',
-        libraryTarget: 'umd',
-    },
-    externals: {
-        underscore: {
-            commonjs: 'underscore',
-            commonjs2: 'underscore',
-            amd: 'underscore',
-            root: '_',
-        },
-    },
-};
+  entry: "./index.ts",
+  module: {
+    rules: [
+      {
+        test: /.ts/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
+  output: {
+    filename: "kmath.js",
+    path: path.resolve(__dirname, "build"),
+  },
+}
