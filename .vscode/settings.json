@@ -1,0 +1,4 @@
+{
+    // We use Flow (this disables TypeScript support)
+    "javascript.validate.enable": false
+}
