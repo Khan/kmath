@@ -1,50 +1,50 @@
-var assert = require("assert");
+// @flow
 
-var point = require("../point.js");
+import * as point from "../point.js";
 
 describe("kpoint", function() {
-    it('point.compare should return positive if the first element is larger', function() {
+    it("point.compare should return positive if the first element is larger", function() {
         var result = point.compare([5, 2], [3, 4]);
-        assert.strictEqual(result > 0, true);
+        expect(result).toBeGreaterThan(0);
     });
 
-    it('point.compare should return negative if the first element is smaller', function() {
+    it("point.compare should return negative if the first element is smaller", function() {
         var result = point.compare([2, 2], [4, 0]);
-        assert.strictEqual(result < 0, true);
+        expect(result).toBeLessThan(0);
     });
 
-    it('point.compare should return positive if the second element is larger', function() {
+    it("point.compare should return positive if the second element is larger", function() {
         var result = point.compare([5, 2], [5, 1]);
-        assert.strictEqual(result > 0, true);
+        expect(result).toBeGreaterThan(0);
     });
 
-    it('point.compare should return negative if the second element is smaller', function() {
+    it("point.compare should return negative if the second element is smaller", function() {
         var result = point.compare([2, 2], [2, 4]);
-        assert.strictEqual(result < 0, true);
+        expect(result).toBeLessThan(0);
     });
 
-    it('point.compare should return positive if the third element is larger', function() {
+    it("point.compare should return positive if the third element is larger", function() {
         var result = point.compare([5, 3, -2], [5, 3, -4]);
-        assert.strictEqual(result > 0, true);
+        expect(result).toBeGreaterThan(0);
     });
 
-    it('point.compare should return negative if the third element is smaller', function() {
+    it("point.compare should return negative if the third element is smaller", function() {
         var result = point.compare([2, -1, -4], [2, -1, -2]);
-        assert.strictEqual(result < 0, true);
+        expect(result).toBeLessThan(0);
     });
 
-    it('point.compare should return 0 if the vectors are equal', function() {
+    it("point.compare should return 0 if the vectors are equal", function() {
         var result = point.compare([2, 4, 3], [2, 4, 3]);
-        assert.strictEqual(result, 0);
+        expect(result).toBe(0);
     });
 
-    it('point.compare should return negative if v1 is shorter than v2', function() {
+    it("point.compare should return negative if v1 is shorter than v2", function() {
         var result = point.compare([2, 4], [2, 4, 3]);
-        assert.strictEqual(result < 0, true);
+        expect(result).toBeLessThan(0);
     });
 
-    it('point.compare should return positive if v1 is longer than v2', function() {
+    it("point.compare should return positive if v1 is longer than v2", function() {
         var result = point.compare([2, 4, -2], [2, 2]);
-        assert.strictEqual(result > 0, true);
+        expect(result).toBeGreaterThan(0);
     });
 });
