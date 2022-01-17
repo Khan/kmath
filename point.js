@@ -1,110 +1,109 @@
-/*
+/**
  * Point Utils
  * A point is an array of two numbers e.g. [0, 0].
+ *
+ * @flow
  */
 
-var _ = require("underscore");
-var kvector = require("./vector.js");
-var knumber = require("./number.js");
+import _ from "underscore";
 
-var kpoint = {
+import * as kvector from "./vector.js";
+import * as knumber from "./number.js";
 
-    // Rotate point (around origin unless a center is specified)
-    rotateRad: function(point, theta, center) {
-        if (center === undefined) {
-            return kvector.rotateRad(point, theta);
-        } else {
-            return kvector.add(
-                center,
-                kvector.rotateRad(
-                    kvector.subtract(point, center),
-                    theta
-                )
-            );
-        }
-    },
+// A point, in 2D, 3D, or nD space.
+export type Point = $ReadOnlyArray<number>;
 
-    rotateDeg: function(point, theta, center) {
-        if (center === undefined) {
-            return kvector.rotateDeg(point, theta);
-        } else {
-            return kvector.add(
-                center,
-                kvector.rotateDeg(
-                    kvector.subtract(point, center),
-                    theta
-                )
-            );
-        }
-    },
-
-    // Distance between two points
-    distanceToPoint: function(point1, point2) {
-        return kvector.length(kvector.subtract(point1, point2));
-    },
-
-    // Distance between point and line
-    distanceToLine: function(point, line) {
-        var lv = kvector.subtract(line[1], line[0]);
-        var pv = kvector.subtract(point, line[0]);
-        var projectedPv = kvector.projection(pv, lv);
-        var distancePv = kvector.subtract(projectedPv, pv);
-        return kvector.length(distancePv);
-    },
-
-    // Reflect point over line
-    reflectOverLine: function(point, line) {
-        var lv = kvector.subtract(line[1], line[0]);
-        var pv = kvector.subtract(point, line[0]);
-        var projectedPv = kvector.projection(pv, lv);
-        var reflectedPv = kvector.subtract(kvector.scale(projectedPv, 2), pv);
-        return kvector.add(line[0], reflectedPv);
-    },
-
-    /**
-     * Compares two points, returning -1, 0, or 1, for use with
-     * Array.prototype.sort
-     *
-     * Note: This technically doesn't satisfy the total-ordering
-     * requirements of Array.prototype.sort unless equalityTolerance
-     * is 0. In some cases very close points that compare within a
-     * few equalityTolerances could appear in the wrong order.
-     */
-    compare: function(point1, point2, equalityTolerance) {
-        if (point1.length !== point2.length) {
-            return point1.length - point2.length;
-        }
-        for (var i = 0; i < point1.length; i++) {
-            if (!knumber.equal(point1[i], point2[i], equalityTolerance)) {
-                return point1[i] - point2[i];
-            }
-        }
-        return 0;
+// Rotate point (around origin unless a center is specified)
+export function rotateRad(point: Point, theta: number, center: Point): Point {
+    if (center === undefined) {
+        return kvector.rotateRad(point, theta);
+    } else {
+        return kvector.add(
+            center,
+            kvector.rotateRad(kvector.subtract(point, center), theta)
+        );
     }
-};
+}
 
-_.extend(kpoint, {
-    // Check if a value is a point
-    is: kvector.is,
+export function rotateDeg(point: Point, theta: number, center: Point): Point {
+    if (center === undefined) {
+        return kvector.rotateDeg(point, theta);
+    } else {
+        return kvector.add(
+            center,
+            kvector.rotateDeg(kvector.subtract(point, center), theta)
+        );
+    }
+}
 
-    // Add and subtract vector(s)
-    addVector: kvector.add,
-    addVectors: kvector.add,
-    subtractVector: kvector.subtract,
-    equal: kvector.equal,
+// Distance between two points
+export function distanceToPoint(point1: Point, point2: Point): number {
+    return kvector.length(kvector.subtract(point1, point2));
+}
 
-    // Convert from cartesian to polar and back
-    polarRadFromCart: kvector.polarRadFromCart,
-    polarDegFromCart: kvector.polarDegFromCart,
-    cartFromPolarRad: kvector.cartFromPolarRad,
-    cartFromPolarDeg: kvector.cartFromPolarDeg,
+// Distance between point and line
+export function distanceToLine(point: Point, line: [Point, Point]): number {
+    var lv = kvector.subtract(line[1], line[0]);
+    var pv = kvector.subtract(point, line[0]);
+    var projectedPv = kvector.projection(pv, lv);
+    var distancePv = kvector.subtract(projectedPv, pv);
+    return kvector.length(distancePv);
+}
 
-    // Rounding
-    round: kvector.round,
-    roundTo: kvector.roundTo,
-    floorTo: kvector.floorTo,
-    ceilTo: kvector.ceilTo
-});
+// Reflect point over line
+export function reflectOverLine(
+    point: Point,
+    line: [Point, Point]
+): $ReadOnlyArray<number> /* TODO: convert to Point */ {
+    var lv = kvector.subtract(line[1], line[0]);
+    var pv = kvector.subtract(point, line[0]);
+    var projectedPv = kvector.projection(pv, lv);
+    var reflectedPv = kvector.subtract(kvector.scale(projectedPv, 2), pv);
+    return kvector.add(line[0], reflectedPv);
+}
 
-module.exports = kpoint;
+/**
+ * Compares two points, returning -1, 0, or 1, for use with
+ * Array.prototype.sort
+ *
+ * Note: This technically doesn't satisfy the total-ordering
+ * requirements of Array.prototype.sort unless equalityTolerance
+ * is 0. In some cases very close points that compare within a
+ * few equalityTolerances could appear in the wrong order.
+ */
+export function compare(
+    point1: Point,
+    point2: Point,
+    equalityTolerance?: number
+): number /* TODO: convert to -1 | 0 | 1 type */ {
+    if (point1.length !== point2.length) {
+        return point1.length - point2.length;
+    }
+    for (var i = 0; i < point1.length; i++) {
+        if (!knumber.equal(point1[i], point2[i], equalityTolerance)) {
+            return point1[i] - point2[i];
+        }
+    }
+    return 0;
+}
 
+// Check if a value is a point
+export const is = kvector.is;
+
+// Add and subtract vector(s)
+export const addVector = kvector.add;
+export const addVectors = kvector.add;
+export const subtractVector = kvector.subtract;
+export const equal = kvector.equal;
+
+// Convert from cartesian to polar and back
+export const polarRadFromCart = kvector.polarRadFromCart;
+export const polarDegFromCart = kvector.polarDegFromCart;
+export const cartFromPolarRad = kvector.cartFromPolarRad;
+export const cartFromPolarDeg = kvector.cartFromPolarDeg;
+
+// Rounding
+export const round = kvector.round;
+export const roundTo = kvector.roundTo;
+export const floorTo = kvector.floorTo;
+export const ceilTo = kvector.ceilTo;
