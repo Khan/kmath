@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Khan/kmath",
   "devDependencies": {
+    "flow-bin": "0.167.1",
     "mocha": "^1.21.5",
     "webpack": "^3.8.1"
   },
