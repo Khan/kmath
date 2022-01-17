@@ -62,11 +62,11 @@ export function subtract(
     v1: $ReadOnlyArray<number>,
     v2: $ReadOnlyArray<number>
 ): $ReadOnlyArray<number> {
-    return _.zip(v1, v2).map(dim => dim[0] - dim[1]);
+    return _.zip(v1, v2).map((dim) => dim[0] - dim[1]);
 }
 
 export function negate(v: $ReadOnlyArray<number>): $ReadOnlyArray<number> {
-    return v.map(x => {
+    return v.map((x) => {
         return -x;
     });
 }
@@ -76,7 +76,7 @@ export function scale(
     v1: $ReadOnlyArray<number>,
     scalar: number
 ): $ReadOnlyArray<number> {
-    return v1.map(x => {
+    return v1.map((x) => {
         return x * scalar;
     });
 }
@@ -90,7 +90,7 @@ export function equal(
     // the length of the longest vector. knumber.equal then
     // returns false for any number compared to the undefined
     // passed in if one of the vectors is shorter.
-    return _.zip(v1, v2).every(pair =>
+    return _.zip(v1, v2).every((pair) =>
         knumber.equal(pair[0], pair[1], tolerance)
     );
 }

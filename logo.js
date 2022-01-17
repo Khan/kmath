@@ -3,9 +3,11 @@
 //
 // Also located at http://ka-perseus-graphie.s3.amazonaws.com/42ef3cbadc3e6464124533191728c3c5c55c7355.svg
 
-
 init({
-    range: [[0, 10], [0, 10]],
+    range: [
+        [0, 10],
+        [0, 10],
+    ],
     scale: 40,
 });
 
@@ -26,4 +28,3 @@ line([5, 2], [5, 8], {
     fill: "WHITE",
     strokeWidth: 25,
 });
-
