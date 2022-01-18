@@ -40,8 +40,7 @@ export function dot(
     a: $ReadOnlyArray<number>,
     b: $ReadOnlyArray<number>
 ): number {
-    var vecs = _.toArray(arguments);
-    var zipped = _.zip.apply(_, vecs);
+    var zipped = _.zip(a, b);
     var multiplied = zipped.map(arrayProduct);
     return arraySum(multiplied);
 }
@@ -53,8 +52,7 @@ export function dot(
 export function add(
     ...vecs: $ReadOnlyArray<$ReadOnlyArray<number>>
 ): $ReadOnlyArray<number> {
-    var points = _.toArray(arguments);
-    var zipped = _.zip.apply(_, points);
+    var zipped = _.zip(...vecs);
     return zipped.map(arraySum);
 }
 
