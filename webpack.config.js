@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
     entry: './index.js',
@@ -15,5 +15,14 @@ module.exports = {
             amd: 'underscore',
             root: '_',
         },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {loader: 'babel-loader'},
+            },
+        ],
     },
 };
