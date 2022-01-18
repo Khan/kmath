@@ -1,38 +1,38 @@
 {
-    "name": "kmath",
-    "version": "0.0.2",
-    "description": "Khan Academy's Javascript Numeric Math Utilities",
-    "main": "index.js",
-    "scripts": {
-        "format": "prettier --write .",
-        "test": "jest",
-        "build": "webpack --mode production"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Khan/kmath.git"
-    },
-    "keywords": [
-        "math"
-    ],
-    "author": "Khan Academy",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Khan/kmath/issues"
-    },
-    "homepage": "https://github.com/Khan/kmath",
-    "devDependencies": {
-        "@babel/core": "^7.16.7",
-        "@babel/plugin-transform-flow-strip-types": "^7.16.7",
-        "@babel/preset-env": "^7.16.8",
-        "babel-loader": "^8.2.3",
-        "flow-bin": "0.167.1",
-        "jest": "^27.4.7",
-        "prettier": "^2.5.1",
-        "webpack": "^5.66.0",
-        "webpack-cli": "^4.9.1"
-    },
-    "dependencies": {
-        "underscore": "1.4.4"
-    }
+  "name": "kmath",
+  "version": "0.0.2",
+  "description": "Khan Academy's Javascript Numeric Math Utilities",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "test": "jest",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khan/kmath.git"
+  },
+  "keywords": [
+    "math"
+  ],
+  "author": "Khan Academy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Khan/kmath/issues"
+  },
+  "homepage": "https://github.com/Khan/kmath",
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/plugin-transform-flow-strip-types": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "babel-loader": "^8.2.3",
+    "flow-bin": "0.167.1",
+    "jest": "^27.4.7",
+    "prettier": "^2.5.1",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "underscore": "1.4.4"
+  }
 }
