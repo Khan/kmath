@@ -1,11 +1,8 @@
-kmath
-=====
+# kmath
 
 Javascript Numeric Math Utilities
 
-
-Overview
---------
+## Overview
 
 kmath is a collection of Javascript utility functions for performing
 numeric (rather than algebraic) math that isn't built into Javascript,
@@ -33,9 +30,7 @@ are at odds. If you are writing code in an inner loop in an allocation-
 sensitive environment, kmath might not be for you. Each method is
 pure and allocates a new array for the return value.
 
-
-Getting started
----------------
+## Getting started
 
 After cloning or downloading kmath, you can install it by running
 `npm install` or `make install`.
@@ -48,25 +43,23 @@ into a Node repl:
     > kmath.vector.add([1, 2], [3, 4])
     [4, 6]
 
-
-Usage overview
---------------
+## Usage overview
 
 kmath has 5 basic types:
 
- * number
- * vector
- * point
- * ray
- * line
+-   number
+-   vector
+-   point
+-   ray
+-   line
 
 Each has its own representation:
 
- * number: a js number (i.e. `5`)
- * vector: a js array of numbers (i.e. `[5, 6]`)
- * point: a js array of numbers (i.e. `[5, 6]`)
- * ray: a js array of two points (i.e. `[[5, 6], [1, 2]]`)
- * line: a js array of two points (i.e. `[[5, 6], [1, 2]]`)
+-   number: a js number (i.e. `5`)
+-   vector: a js array of numbers (i.e. `[5, 6]`)
+-   point: a js array of numbers (i.e. `[5, 6]`)
+-   ray: a js array of two points (i.e. `[[5, 6], [1, 2]]`)
+-   line: a js array of two points (i.e. `[[5, 6], [1, 2]]`)
 
 kmath functions usually take an argument of the corresponding type as
 the first parameter, and other parameters afterwards. For example, to
@@ -76,9 +69,7 @@ rotate the point `[1, 1]` by 90 degrees around `[0, 0]`, one might use:
 
 Documentation for specific functions for each type is provided below.
 
-
-kmath.number
-------------
+## kmath.number
 
 #### `number.DEFAULT_TOLERANCE === 1e-9`
 
@@ -140,9 +131,7 @@ is found, `[decimal, 1]` is returned.
 `tolerance` defaults to `number.EPSILON`. `maxDenominator` defaults to
 `1000`.
 
-
-kmath.vector
-------------
+## kmath.vector
 
 #### `vector.is(maybeAVector, [dimension])`
 
@@ -310,9 +299,7 @@ Floors each dimension of `v` to the nearest `increment`.
 
 Ceils each dimension of `v` to the nearest `increment`.
 
-
-kmath.point
------------
+## kmath.point
 
 #### `point.is(maybeAPoint, [length])`
 
@@ -442,9 +429,7 @@ Floors each dimension of `p` to the nearest `increment`.
 
 Ceils each dimension of `p` to the nearest `increment`.
 
-
-kmath.ray
----------
+## kmath.ray
 
 #### `ray.equal(r1, r2, [tolerance])`
 
@@ -452,9 +437,7 @@ Returns true if rays `r1` and `r2` are equal within `tolerance`.
 
 If unspecified, `tolerance` defaults to `kmath.number.DEFAULT_TOLERANCE`.
 
-
-kmath.line
-----------
+## kmath.line
 
 #### `line.equal(line1, line2, [tolerance])`
 
@@ -477,9 +460,6 @@ Returns the distance between `theLine` and point `p`.
 
 Returns the reflection of `p` over `theLine`.
 
-
-License
--------
+## License
 
 MIT. See the LICENSE file for more information.
-
