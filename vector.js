@@ -40,8 +40,7 @@ export function dot(
     a: $ReadOnlyArray<number>,
     b: $ReadOnlyArray<number>
 ): number {
-    var vecs = _.toArray(arguments);
-    var zipped = _.zip.apply(_, vecs);
+    var zipped = _.zip(a, b);
     var multiplied = zipped.map(arrayProduct);
     return arraySum(multiplied);
 }
@@ -53,8 +52,7 @@ export function dot(
 export function add(
     ...vecs: $ReadOnlyArray<$ReadOnlyArray<number>>
 ): $ReadOnlyArray<number> {
-    var points = _.toArray(arguments);
-    var zipped = _.zip.apply(_, points);
+    var zipped = _.zip(...vecs);
     return zipped.map(arraySum);
 }
 
@@ -157,18 +155,9 @@ export function polarDegFromCart(
  * cartFromPolarRad([5, Math.PI])
  */
 export function cartFromPolarRad(
-    radius: number | [number, number],
-    theta?: number
+    radius: number,
+    theta?: number = 0
 ): $ReadOnlyArray<number> /* TODO: convert to tuple/Point */ {
-    if (_.isUndefined(theta)) {
-        // $FlowFixMe[prop-missing]
-        theta = radius[1];
-        // $FlowFixMe[prop-missing]
-        radius = radius[0];
-    }
-
-    // $FlowFixMe[unsafe-addition]
-    // $FlowFixMe[incompatible-call]
     return [radius * Math.cos(theta), radius * Math.sin(theta)];
 }
 
@@ -179,17 +168,9 @@ export function cartFromPolarRad(
  * cartFromPolarDeg([5, 30])
  */
 export function cartFromPolarDeg(
-    radius: number | [number, number],
-    theta?: number
+    radius: number,
+    theta?: number = 0
 ): $ReadOnlyArray<number> {
-    if (_.isUndefined(theta)) {
-        // $FlowFixMe[prop-missing]
-        theta = radius[1];
-        // $FlowFixMe[prop-missing]
-        radius = radius[0];
-    }
-
-    // $FlowFixMe[unsafe-addition]
     return cartFromPolarRad(radius, (theta * Math.PI) / 180);
 }
 
