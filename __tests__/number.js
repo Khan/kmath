@@ -3,12 +3,20 @@
 import * as number from "../number.js";
 
 describe("knumber", function () {
+    it.each([3, Math.PI, 6.28, 5e10, 1 / 0])("is a number: %s", (num) => {
+        expect(number.is(num)).toBe(true);
+    });
+
+    it.each(["10", 0 / 0, NaN])("is not a number:%s", (num) => {
+        expect(number.is(num)).toBe(false);
+    });
+
     it("two equal numbers should be equal", function () {
         var result = number.equal(1 / 3, (1 / 90) * 30);
         expect(result).toBe(true);
     });
 
-    it("two different numbers should be equal", function () {
+    it("two different numbers should not be equal", function () {
         var result = number.equal(1 / 3, 1.333333);
         expect(result).toBe(false);
     });
@@ -51,6 +59,30 @@ describe("knumber", function () {
 
     it("isInteger(-2) should be true", function () {
         expect(number.isInteger(-2)).toBe(true);
+    });
+
+    it("isInteger(10.0) should be true", () => {
+        expect(number.isInteger(10)).toBe(true);
+    });
+
+    it("rounds to correct precision", () => {
+        expect(number.round(0.06793, 4)).toBe(0.0679);
+        expect(number.round(0.06793, 3)).toBe(0.068);
+    });
+
+    it("rounds to correct interval", () => {
+        expect(number.roundTo(83, 5)).toBe(85);
+        expect(number.roundTo(2.3, 0.5)).toBe(2.5);
+    });
+
+    it("floors to the correct interval", () => {
+        expect(number.floorTo(83, 5)).toBe(80);
+        expect(number.floorTo(2.3, 0.5)).toBe(2);
+    });
+
+    it("ceils to the correct interval", () => {
+        expect(number.ceilTo(81, 5)).toBe(85);
+        expect(number.ceilTo(2.1, 0.5)).toBe(2.5);
     });
 
     it("toFraction(-2) should be -2/1", function () {

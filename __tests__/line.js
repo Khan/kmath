@@ -3,6 +3,36 @@
 import * as line from "../line.js";
 
 describe("kline", function () {
+    it("finds distance to point", () => {
+        const result = line.distanceToPoint(
+            [
+                [-5, 0],
+                [5, 0],
+            ],
+            [0, 5]
+        );
+        expect(result).toBe(5);
+    });
+
+    it("reflects a point", () => {
+        const result = line.reflectPoint(
+            [
+                [-5, -5],
+                [5, 5],
+            ],
+            [0, 5]
+        );
+        expect(result).toEqual([5, 0]);
+    });
+
+    it("finds the midpoint", () => {
+        const result = line.midpoint([
+            [-5, -5],
+            [5, 5],
+        ]);
+        expect(result).toEqual([0, 0]);
+    });
+
     it("two identical lines should be equal", function () {
         var result = line.equal(
             [
